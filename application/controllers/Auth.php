@@ -40,7 +40,50 @@ class Auth extends CI_Controller
 	{
 		$params = array('userid','level');
 		$this->session->unset_userdata($params);
-		//var_dump($params);
 		redirect('auth/login'); 
 	}
+	
+	public function ambil_provinsi(){	 
+		$provinsi = $_GET['provinsi'];
+		$query= $this->db->query("select kabupaten from kodepos  WHERE  provinsi='$provinsi' group by kabupaten");
+		echo "<option value=''>-- Pilih Kota --</option>";
+		foreach ($query->result() as $row)
+		{
+			echo "<option value=\"".$row->kabupaten."\" >".$row->kabupaten."</option>\n"; 
+		}
+	}
+	
+	public function ambil_kabupaten(){	 
+		$kabupaten = $_GET['kabupaten'];
+		$query= $this->db->query("select kecamatan from kodepos  WHERE  kabupaten='$kabupaten' group by kecamatan");
+		echo "<option value=''>-- Pilih Kecamatan --</option>";
+		foreach ($query->result() as $row)
+		{
+			echo "<option value=\"".$row->kecamatan."\" >".$row->kecamatan."</option>\n"; 
+		}
+	}
+	
+	public function ambil_kecamatan(){	 
+		$kabupaten = $_GET['kabupaten'];
+		$kecamatan = $_GET['kecamatan'];
+		$query= $this->db->query("select kelurahan from kodepos  WHERE  kecamatan='$kecamatan' and kabupaten='$kabupaten' group by kelurahan");
+		echo "<option value=''>-- Pilih Keluarahan --</option>";
+		foreach ($query->result() as $row)
+		{
+			echo "<option value=\"".$row->kelurahan."\" >".$row->kelurahan."</option>\n"; 
+		}
+	}	
+
+	public function ambil_kelurahan(){	 
+		$kelurahan = $_GET['kelurahan'];
+		$kecamatan = $_GET['kecamatan'];
+		$kabupaten = $_GET['kabupaten'];
+		$query= $this->db->query("select kodepos from kodepos  WHERE  kelurahan='$kelurahan' and kabupaten='$kabupaten' and kecamatan='$kecamatan' group by kodepos");
+		echo "<option value=''>-- Pilih Kodepos --</option>";
+		foreach ($query->result() as $row)
+		{
+			echo "<option value=\"".$row->kodepos."\" >".$row->kodepos."</option>\n"; 
+		}
+	}
+
 }

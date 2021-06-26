@@ -25,15 +25,48 @@ class Customer extends CI_Controller
 		$this->template->load('template','customer/customer_data',$data);
 	}
 
-	public function get_conten($id)
-	{
-		$data['data'] = $this->customer_m->update($id)->result();
-		$this->load->view('customer/get_customer',$data);
-	}
-
 	public function delete($id)
 	{
 		$this->customer_m->delete($id);
 		redirect('/customer');
+	}
+
+	public function delete_address($id,$id_user)
+	{
+		$this->customer_m->delete_address($id);
+		redirect('/customer/customer_update/'.$id_user);
+	}
+
+	public function customer_update($id){
+
+		if($this->input->post('submit') == "submit_addres"){
+			$this->customer_m->insert_address();
+			redirect('/customer/customer_update/'.$this->input->post('user_id'));
+		}
+
+		$data['data'] = $this->customer_m->update($id)->result();
+		$data['addres'] = $this->customer_m->update_address($id)->result();
+		$this->template->load('template','customer/customer_update',$data);
+	}
+
+
+
+
+
+
+	
+
+	public function get_conten($id)
+	{
+		$data['data'] = $this->customer_m->update($id)->result();
+		$data['addres'] = $this->customer_m->update_address($id)->result();
+		$this->load->view('customer/get_customer',$data);
+	}
+
+	public function get_conten_address($id)
+	{
+		$data['data'] = $this->customer_m->update($id)->result();
+		var_dump($data['data']);exit;
+		$this->load->view('customer/get_customer',$data);
 	}
 }

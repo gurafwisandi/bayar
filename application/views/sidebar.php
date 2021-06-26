@@ -99,26 +99,17 @@
           </div>
         </li>
       <?php } ?>
-        <li class="nav-item">
-          <a data-toggle="collapse" href="#sidebarLayouts">
+        <li class="nav-item 
+          <?php 
+            if( $this->uri->segment('1') == 'transaksi' )
+            {
+              echo 'active';
+            }
+          ?>">
+          <a  href="<?=site_url('transaksi')?>" class="collapsed" aria-expanded="false">
             <i class="fas fa-th-list"></i>
             <p>Transaksi</p>
-            <span class="caret"></span>
           </a>
-          <div class="collapse" id="sidebarLayouts">
-            <ul class="nav nav-collapse">
-              <li>
-                <a href="#">
-                  <span class="sub-item">Transaksi 1</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="sub-item">Transaksi 2</span>
-                </a>
-              </li>
-            </ul>
-          </div>
         </li>
         <li class="nav-item">
           <a data-toggle="collapse" href="#charts">
