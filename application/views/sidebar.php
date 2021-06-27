@@ -41,7 +41,7 @@
         <?php if ($this->fungsi->user_login()->level == 1) { ?>
         <li class="nav-item 
           <?php 
-            if( $this->uri->segment('1') == 'customer' OR 
+            if( ($this->uri->segment('1') == 'customer' AND $this->uri->segment('2') !== 'profile') OR 
                 $this->uri->segment('1') == 'kurs' OR 
                 $this->uri->segment('1') == 'payment' OR 
                 $this->uri->segment('1') == 'uang' OR 
@@ -58,7 +58,7 @@
             </a>
             <div class="collapse 
               <?php 
-                if( $this->uri->segment('1') == 'customer' OR 
+                if( ($this->uri->segment('1') == 'customer' AND $this->uri->segment('2') !== 'profile') OR 
                   $this->uri->segment('1') == 'kurs' OR 
                   $this->uri->segment('1') == 'payment' OR 
                   $this->uri->segment('1') == 'uang' OR 
@@ -69,7 +69,7 @@
               ?>" id="base">
               <ul class="nav nav-collapse">
               
-                <li class="<?php if($this->uri->segment('1') == 'customer'){ echo 'active'; } ?>">
+                <li class="<?php if(($this->uri->segment('1') == 'customer' AND $this->uri->segment('2') !== 'profile')){ echo 'active'; } ?>">
                   <a href="<?=site_url('customer')?>">
                     <span class="sub-item">Customer</span>
                   </a>
@@ -132,8 +132,14 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item">
-          <a href="<?=site_url('user')?>">
+        <li class="nav-item 
+          <?php 
+            if( $this->uri->segment('2') == 'profile' )
+            {
+              echo 'active';
+            }
+          ?>">
+          <a href="<?=site_url('customer/profile/'.$this->fungsi->user_login()->user_id)?>">
             <i class="fas fa-user-alt"></i>
             <p>Profil</p>
           </a>

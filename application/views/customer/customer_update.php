@@ -59,14 +59,15 @@
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="form-group form-floating-label">
-												<input name="alamat" autocomplete="off" id="inputFloatingLabel2" type="text" class="form-control input-solid" size="20" required>
-												<label for="inputFloatingLabel2" class="placeholder">Alamat</label>
+												<label for="inputFloatingLabel2" class="">Alamat</label>
+												<input name="alamat" placeholder="Alamat" autocomplete="off" id="inputFloatingLabel2" type="text" class="form-control input-solid" size="20" required>
 										</div>
 									</div>
 									<div class="col-sm-6">
 											<div class="form-group form-floating-label">
+												<label for="selectFloatingLabel2" class="">Provinsi</label>
 												<select name="provinsi" id="provinsi" class="form-control input-solid" id="selectFloatingLabel2" required>
-													<option value="">&nbsp;</option>
+													<option value="">-- Pilih Provinsi --</option>
 													<?php 
 														$this->db->group_by("provinsi");
 														$query = $this->db->get('kodepos');
@@ -76,41 +77,40 @@
 														<option value="<?php echo $row->provinsi;?>"><?php echo $row->provinsi;?></option>
 													<?php	} ?>
 												</select>
-												<label for="selectFloatingLabel2" class="placeholder">Provinsi</label>
 											</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group form-floating-label">
+												<label for="inputFloatingLabel2" class="">Kabupaten</label>
 												<select name="kabupaten" id="kabupaten" class="form-control input-solid" required="required" style="width: 100%;"  data-placeholder="-- Pilih Kabupaten --" tabindex="7">
 												</select>
-												<label for="inputFloatingLabel2" class="placeholder">Kabupaten</label>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group form-floating-label">
+												<label for="inputFloatingLabel2" class="">Kecamatan</label>
 												<select name="kecamatan" id="kecamatan" class="form-control input-solid" required="required" style="width: 100%;"  data-placeholder="-- Pilih Kabupaten --" tabindex="7">
 												</select>
-												<label for="inputFloatingLabel2" class="placeholder">Kecamatan</label>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group form-floating-label">
+												<label for="inputFloatingLabel2" class="">Kelurahan</label>
 												<select name="kelurahan" id="kelurahan" class="form-control input-solid" required="required" style="width: 100%;"  data-placeholder="-- Pilih Kabupaten --" tabindex="7">
-												</select>
-												<label for="inputFloatingLabel2" class="placeholder">Kelurahan</label>
+											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group form-floating-label">
+												<label for="inputFloatingLabel2" class="">Kode Pos</label>
 												<select name="kodepos" id="kodepos" class="form-control input-solid" required="required" style="width: 100%;"  data-placeholder="-- Pilih Kabupaten --" tabindex="7">
 												</select>
-												<label for="inputFloatingLabel2" class="placeholder">Kode Pos</label>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group form-floating-label">
-												<input name="rt_rw" autocomplete="off" id="inputFloatingLabel2" type="text" class="form-control input-solid" size="20" required>
-												<label for="inputFloatingLabel2" class="placeholder">RT/RW</label>
+												<label for="inputFloatingLabel2" class="">RT/RW</label>
+												<input name="rt_rw" placeholder="RT/RW" autocomplete="off" id="inputFloatingLabel2" type="text" class="form-control input-solid" size="20" required>
 										</div>
 									</div>
 									<div class="col-sm-12">
@@ -253,9 +253,9 @@
                 <td>
                   <div class="form-button-action">
                     <!-- <label class="selectgroup-item">
-                    <a href="javascript:void(0)" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->user_id; ?>" id="get_data" data-toggle="tooltip" title="Approval">
-                      <span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-warning btn-xs"></i></span>
-                    </a>
+											<a href="javascript:void(0)" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->user_id; ?>" id="get_data" data-toggle="tooltip" title="Approval">
+												<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-warning btn-xs"></i></span>
+											</a>
                     </label> -->
                     <label class="selectgroup-item">
                       <a href="<?php echo base_url('customer/delete_address/'.$u->id_alamat.'/'.$u->user_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')">
@@ -321,57 +321,57 @@
 					});
 			});
 			
-			// $("#provinsi").change(function(){
-			// 		var provinsi = $("#provinsi").val();
-			// 		console.log(provinsi);
-			// 		$.ajax({
-			// 				url: "<?php echo site_url('auth/ambil_provinsi')?>",
-			// 				data: "provinsi="+provinsi,
-			// 				cache: false,     
-			// 				success: function(data){
-			// 						$("#kabupaten").html(data);
+			$("#provinsi").change(function(){
+					var provinsi = $("#provinsi").val();
+					console.log(provinsi);
+					$.ajax({
+							url: "<?php echo site_url('auth/ambil_provinsi')?>",
+							data: "provinsi="+provinsi,
+							cache: false,     
+							success: function(data){
+									$("#kabupaten").html(data);
 									
-			// 				}
-			// 		}); 
-			// });  
-			// $("#kabupaten").change(function(){
-			// 		var kabupaten = $("#kabupaten").val();
-			// 		console.log(kabupaten);
-			// 		$.ajax({
-			// 				url: "<?php echo site_url('auth/ambil_kabupaten')?>",
-			// 				data: "kabupaten="+kabupaten,
-			// 				cache: false,     
-			// 				success: function(data){
-			// 						$("#kecamatan").html(data);
-			// 				}
-			// 		}); 
-			// }); 
-			// $("#kecamatan").change(function(){
-			// 		var kecamatan = $("#kecamatan").val();
-			// 		var kabupaten = $("#kabupaten").val();
-			// 		$.ajax({
-			// 				url: "<?php echo site_url('auth/ambil_kecamatan')?>",
-			// 				data: {'kecamatan': kecamatan, 'kabupaten': kabupaten},
-			// 				cache: false,     
-			// 				success: function(data){
-			// 						$("#kelurahan").html(data);
-			// 						console.log(data);
-			// 				}
-			// 		}); 
-			// });
-			// $("#kelurahan").change(function(){
-			// 		var kelurahan = $("#kelurahan").val();
-			// 		var kecamatan = $("#kecamatan").val();
-			// 		var kabupaten = $("#kabupaten").val();
-			// 		$.ajax({
-			// 				url: "<?php echo site_url('auth/ambil_kelurahan')?>",
-			// 				data: {'kelurahan':kelurahan,'kecamatan': kecamatan, 'kabupaten': kabupaten},
-			// 				cache: false,     
-			// 				success: function(data){
-			// 						$("#kodepos").html(data);
-			// 				}
-			// 		}); 
-			// });
+							}
+					}); 
+			});  
+			$("#kabupaten").change(function(){
+					var kabupaten = $("#kabupaten").val();
+					console.log(kabupaten);
+					$.ajax({
+							url: "<?php echo site_url('auth/ambil_kabupaten')?>",
+							data: "kabupaten="+kabupaten,
+							cache: false,     
+							success: function(data){
+									$("#kecamatan").html(data);
+							}
+					}); 
+			}); 
+			$("#kecamatan").change(function(){
+					var kecamatan = $("#kecamatan").val();
+					var kabupaten = $("#kabupaten").val();
+					$.ajax({
+							url: "<?php echo site_url('auth/ambil_kecamatan')?>",
+							data: {'kecamatan': kecamatan, 'kabupaten': kabupaten},
+							cache: false,     
+							success: function(data){
+									$("#kelurahan").html(data);
+									console.log(data);
+							}
+					}); 
+			});
+			$("#kelurahan").change(function(){
+					var kelurahan = $("#kelurahan").val();
+					var kecamatan = $("#kecamatan").val();
+					var kabupaten = $("#kabupaten").val();
+					$.ajax({
+							url: "<?php echo site_url('auth/ambil_kelurahan')?>",
+							data: {'kelurahan':kelurahan,'kecamatan': kecamatan, 'kabupaten': kabupaten},
+							cache: false,     
+							success: function(data){
+									$("#kodepos").html(data);
+							}
+					}); 
+			});
 	});
 
 	$(document).ready(function() {

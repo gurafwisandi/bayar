@@ -46,7 +46,7 @@ class Auth extends CI_Controller
 	public function ambil_provinsi(){	 
 		$provinsi = $_GET['provinsi'];
 		$query= $this->db->query("select kabupaten from kodepos  WHERE  provinsi='$provinsi' group by kabupaten");
-		echo "<option value=''>-- Pilih Kota --</option>";
+		echo "<option value=''>-- Pilih Kabupaten --</option>";
 		foreach ($query->result() as $row)
 		{
 			echo "<option value=\"".$row->kabupaten."\" >".$row->kabupaten."</option>\n"; 

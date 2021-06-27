@@ -49,12 +49,12 @@ class Customer extends CI_Controller
 		$this->template->load('template','customer/customer_update',$data);
 	}
 
-
-
-
-
-
-	
+	public function profile($id)
+	{
+		$data['data'] = $this->customer_m->update($id)->result();
+		$data['addres'] = $this->customer_m->update_address($id)->result();
+		$this->template->load('template','customer/customer_update',$data);
+	}
 
 	public function get_conten($id)
 	{

@@ -170,59 +170,59 @@
 								<div class="form-button-action">
 									<!-- customer -->
 									<?php if($u->status == '1'){ ?>
-									<label class="selectgroup-item">
-										<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->id_transaksi.'|edit'; ?>" id="get_data" data-toggle="tooltip" title="Edit">
-											<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-warning btn-xs"></i></span>
-										</a>
-									</label>
-									<label class="selectgroup-item">
-										<a href="<?php echo base_url('transaksi/checkout/'.$u->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin Checkout')">
-											<span class="selectgroup-button selectgroup-button-icon "><i class="fas fa-check btn btn-warning btn-xs"></i></span>
-										</a>
-									</label>
-									<label class="selectgroup-item">
-										<a href="<?php echo base_url('transaksi/delete/'.$u->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')">
-											<span class="selectgroup-button selectgroup-button-icon "><i class="fas fa-trash-alt btn btn-danger btn-xs"></i></span>
-										</a>
-									</label>
-									<?php } ?>
-									<!-- customer -->
-
-									<?php if($u->status == '2'){ ?>
 										<label class="selectgroup-item">
-											<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->id_transaksi.'|proses'; ?>" id="get_data" data-toggle="tooltip" title="Approval">
-												<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-info btn-xs"></i></span>
+											<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->id_transaksi.'|edit'; ?>" id="get_data" data-toggle="tooltip" title="Edit">
+												<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-warning btn-xs"></i></span>
 											</a>
 										</label>
-										<?php if($u->total_rupiah){ ?>
+										<label class="selectgroup-item">
+											<a href="<?php echo base_url('transaksi/checkout/'.$u->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin Checkout')">
+												<span class="selectgroup-button selectgroup-button-icon "><i class="fas fa-check btn btn-warning btn-xs"></i></span>
+											</a>
+										</label>
+										<label class="selectgroup-item">
+											<a href="<?php echo base_url('transaksi/delete/'.$u->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')">
+												<span class="selectgroup-button selectgroup-button-icon "><i class="fas fa-trash-alt btn btn-danger btn-xs"></i></span>
+											</a>
+										</label>
+									<?php } ?>
+									<!-- admin -->
+									<?php if($this->fungsi->user_login()->level == 1){ ?>
+										<?php if($u->status == '2'){ ?>
 											<label class="selectgroup-item">
-												<a href="<?php echo base_url('transaksi/approve/'.$u->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin Checkout')">
-													<span class="selectgroup-button selectgroup-button-icon "><i class="fas fa-check btn btn-info btn-xs"></i></span>
+												<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->id_transaksi.'|proses'; ?>" id="get_data" data-toggle="tooltip" title="Approval">
+													<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-info btn-xs"></i></span>
 												</a>
 											</label>
+											<?php if($u->total_rupiah){ ?>
+												<label class="selectgroup-item">
+													<a href="<?php echo base_url('transaksi/approve/'.$u->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin Checkout')">
+														<span class="selectgroup-button selectgroup-button-icon "><i class="fas fa-check btn btn-info btn-xs"></i></span>
+													</a>
+												</label>
+											<?php } ?>
+										<?php } ?>
+										
+										<?php if($u->status == '3'){ ?>
+											<label class="selectgroup-item">
+												<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->id_transaksi.'|paid'; ?>" id="get_data" data-toggle="tooltip" title="Approval">
+													<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-secondary btn-xs"></i></span>
+												</a>
+											</label>
+											<?php if($u->file_pembayaran){ ?>
+												<label class="selectgroup-item">
+													<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->id_transaksi.'|file'; ?>" id="get_data" data-toggle="tooltip" title="Approval">
+														<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-file btn btn-secondary btn-xs"></i></span>
+													</a>
+												</label>
+												<label class="selectgroup-item">
+													<a href="<?php echo base_url('transaksi/paid/'.$u->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin Checkout')">
+														<span class="selectgroup-button selectgroup-button-icon "><i class="fas fa-check btn btn-secondary btn-xs"></i></span>
+													</a>
+												</label>
+											<?php } ?>
 										<?php } ?>
 									<?php } ?>
-									
-									<?php if($u->status == '3'){ ?>
-									<label class="selectgroup-item">
-										<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->id_transaksi.'|paid'; ?>" id="get_data" data-toggle="tooltip" title="Approval">
-											<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-secondary btn-xs"></i></span>
-										</a>
-									</label>
-										<?php if($u->file_pembayaran){ ?>
-											<label class="selectgroup-item">
-												<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $u->id_transaksi.'|file'; ?>" id="get_data" data-toggle="tooltip" title="Approval">
-													<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-file btn btn-secondary btn-xs"></i></span>
-												</a>
-											</label>
-											<label class="selectgroup-item">
-												<a href="<?php echo base_url('transaksi/paid/'.$u->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin Checkout')">
-													<span class="selectgroup-button selectgroup-button-icon "><i class="fas fa-check btn btn-secondary btn-xs"></i></span>
-												</a>
-											</label>
-										<?php } ?>
-									<?php } ?>
-									
 								</div>
               </td>
             </tr>
